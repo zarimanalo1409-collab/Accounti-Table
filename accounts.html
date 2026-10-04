@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Account Titles</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+
+<nav>
+
+    <div class="logo">
+        📚 Accounti-Table
+    </div>
+
+    <div>
+
+        <a href="index.html">Dashboard</a>
+
+        <a href="lessons.html">Lessons</a>
+
+        <a href="accounts.html">Account Titles</a>
+
+        <a href="games.html">Games</a>
+
+        <a href="quiz.html">Quiz</a>
+
+        <a href="leaderboard.html">Leaderboard</a>
+
+    </div>
+
+</nav>
+
+
+<section class="section">
+
+    <div class="center">
+
+        <span class="badge">
+            ACCOUNT TITLE LIBRARY
+        </span>
+
+        <h2>
+            Account Titles
+        </h2>
+
+    </div>
+
+
+    <div class="controls">
+
+        <input
+            type="text"
+            id="search"
+            placeholder="🔎 Search account title"
+            onkeyup="searchAccounts()">
+
+        <select
+            id="category"
+            onchange="filterAccounts()">
+
+            <option value="all">
+                All
+            </option>
+
+            <option value="asset">
+                Assets
+            </option>
+
+            <option value="liability">
+                Liabilities
+            </option>
+
+            <option value="equity">
+                Owner's Equity
+            </option>
+
+        </select>
+
+    </div>
+
+
+    <div class="account-grid" id="accountList">
+
+
+        <!-- ASSETS -->
+
+        <div class="account-card asset">
+
+            <div class="symbol">
+                L
+            </div>
+
+            <div class="type">
+                ASSET
+            </div>
+
+            <h3>
+                Land
+            </h3>
+
+            <p>
+                Property owned by the business.
+            </p>
+
+        </div>
+
+
+        <div class="account-card asset">
+
+            <div class="symbol">
+                B
+            </div>
+
+            <div class="type">
+                ASSET
+            </div>
+
+            <h3>
+                Building
+            </h3>
+
+            <p>
+                Buildings owned and used
+                by the business.
+            </p>
+
+        </div>
+
+
+        <div class="account-card asset">
+
+            <div class="symbol">
+                MAE
+            </div>
+
+            <div class="type">
+                ASSET
+            </div>
+
+            <h3>
+                Machinery and Equipment
+            </h3>
+
+            <p>
+                Machinery and equipment
+                used in business operations.
+            </p>
+
+        </div>
+
+
+        <div class="account-card asset">
+
+            <div class="symbol">
+                COH
+            </div>
+
+            <div class="type">
+                ASSET
+            </div>
+
+            <h3>
+                Cash on Hand
+            </h3>
+
+            <p>
+                Cash physically held
+                by the business.
+            </p>
+
+        </div>
+
+
+        <div class="account-card asset">
+
+            <div class="symbol">
+                COB
+            </div>
+
+            <div class="type">
+                ASSET
+            </div>
+
+            <h3>
+                Cash on Bank
+            </h3>
+
+            <p>
+                Money deposited in
+                the business bank account.
+            </p>
+
+        </div>
+
+
+        <div class="account-card asset">
+
+            <div class="symbol">
+                PCF
+            </div>
+
+            <div class="type">
+                ASSET
+            </div>
+
+            <h3>
+                Petty Cash Fund
+            </h3>
+
+            <p>
+                Small amount of cash
+                used for minor payments.
+            </p>
+
+        </div>
+
+
+        <div class="account-card asset">
+
+            <div class="symbol">
+                MP
+            </div>
+
+            <div class="type">
+                ASSET
+            </div>
+
+            <h3>
+                Merchandise Inventory
+            </h3>
+
+            <p>
+                Goods held for sale.
+            </p>
+
+        </div>
+
+
+        <div class="account-card asset">
+
+            <div class="symbol">
+                AR
+            </div>
+
+            <div class="type">
+                ASSET
+            </div>
+
+            <h3>
+                Accounts Receivable
+            </h3>
+
+            <p>
+                Amounts owed by customers
+                to the business.
+            </p>
+
+        </div>
+
+
+        <div class="account-card asset">
+
+            <div class="symbol">
+                NR
+            </div>
+
+            <div class="type">
+                ASSET
+            </div>
+
+            <h3>
+                Notes Receivable
+            </h3>
+
+            <p>
+                Written promises of payment
+                owed to the business.
+            </p>
+
+        </div>
+
+
+        <div class="account-card asset">
+
+            <div class="symbol">
+                FAF
+            </div>
+
+            <div class="type">
+                ASSET
+            </div>
+
+            <h3>
+                Furniture and Fixtures
+            </h3>
+
+            <p>
+                Furniture and fixtures
+                used by the business.
+            </p>
+
+        </div>
+
+
+        <div class="account-card asset">
+
+            <div class="symbol">
+                TE
+            </div>
+
+            <div class="type">
+                ASSET
+            </div>
+
+            <h3>
+                Transportation Equipment
+            </h3>
+
+            <p>
+                Vehicles and transportation
+                equipment used by the business.
+            </p>
+
+        </div>
+
+
+        <div class="account-card asset">
+
+            <div class="symbol">
+                OS
+            </div>
+
+            <div class="type">
+                ASSET
+            </div>
+
+            <h3>
+                Office Supplies
+            </h3>
+
+            <p>
+                Supplies used for
+                office operations.
+            </p>
+
+        </div>
+
+
+
+        <!-- LIABILITIES -->
+
+        <div class="account-card liability">
+
+            <div class="symbol">
+                AP
+            </div>
+
+            <div class="type">
+                LIABILITY
+            </div>
+
+            <h3>
+                Accounts Payable
+            </h3>
+
+            <p>
+                Amounts owed to suppliers
+                or creditors.
+            </p>
+
+        </div>
+
+
+        <div class="account-card liability">
+
+            <div class="symbol">
+                NP
+            </div>
+
+            <div class="type">
+                LIABILITY
+            </div>
+
+            <h3>
+                Notes Payable
+            </h3>
+
+            <p>
+                Written promises made
+                by the business to pay.
+            </p>
+
+        </div>
+
+
+        <div class="account-card liability">
+
+            <div class="symbol">
+                BP
+            </div>
+
+            <div class="type">
+                LIABILITY
+            </div>
+
+            <h3>
+                Bills Payable
+            </h3>
+
+            <p>
+                Amounts payable
+                by the business.
+            </p>
+
+        </div>
+
+
+        <div class="account-card liability">
+
+            <div class="symbol">
+                LP
+            </div>
+
+            <div class="type">
+                LIABILITY
+            </div>
+
+            <h3>
+                Loan Payable
+            </h3>
+
+            <p>
+                Amounts owed from
+                borrowed money.
+            </p>
+
+        </div>
+
+
+        <div class="account-card liability">
+
+            <div class="symbol">
+                AE
+            </div>
+
+            <div class="type">
+                LIABILITY
+            </div>
+
+            <h3>
+                Accrued Expenses
+            </h3>
+
+            <p>
+                Expenses already incurred
+                but not yet paid.
+            </p>
+
+        </div>
+
+
+        <div class="account-card liability">
+
+            <div class="symbol">
+                UI
+            </div>
+
+            <div class="type">
+                LIABILITY
+            </div>
+
+            <h3>
+                Unearned Income
+            </h3>
+
+            <p>
+                Money received before
+                it is earned.
+            </p>
+
+        </div>
+
+
+
+        <!-- OWNER'S EQUITY -->
+
+        <div class="account-card equity">
+
+            <div class="symbol">
+                C
+            </div>
+
+            <div class="type">
+                OWNER'S EQUITY
+            </div>
+
+            <h3>
+                Capital
+            </h3>
+
+            <p>
+                The owner's investment
+                in the business.
+            </p>
+
+        </div>
+
+
+        <div class="account-card equity">
+
+            <div class="symbol">
+                W
+            </div>
+
+            <div class="type">
+                OWNER'S EQUITY
+            </div>
+
+            <h3>
+                Withdrawals
+            </h3>
+
+            <p>
+                Resources withdrawn
+                by the owner for personal use.
+            </p>
+
+        </div>
+
+
+        <div class="account-card equity">
+
+            <div class="symbol">
+                IS
+            </div>
+
+            <div class="type">
+                OWNER'S EQUITY
+            </div>
+
+            <h3>
+                Income Summary
+            </h3>
+
+            <p>
+                Temporary account used
+                during the closing process.
+            </p>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+<script>
+
+function searchAccounts() {
+
+    let search =
+        document
+        .getElementById("search")
+        .value
+        .toLowerCase();
+
+    let cards =
+        document.querySelectorAll(
+            ".account-card"
+        );
+
+    cards.forEach(function(card) {
+
+        let text =
+            card.innerText.toLowerCase();
+
+        if (text.includes(search)) {
+
+            card.style.display = "block";
+
+        } else {
+
+            card.style.display = "none";
+
+        }
+
+    });
+
+}
+
+
+function filterAccounts() {
+
+    let category =
+        document
+        .getElementById("category")
+        .value;
+
+    let cards =
+        document.querySelectorAll(
+            ".account-card"
+        );
+
+    cards.forEach(function(card) {
+
+        if (
+            category === "all" ||
+            card.classList.contains(category)
+        ) {
+
+            card.style.display = "block";
+
+        } else {
+
+            card.style.display = "none";
+
+        }
+
+    });
+
+}
+
+</script>
+
+
+</body>
+</html>

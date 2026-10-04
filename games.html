@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Accounting Games</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+
+<nav>
+
+    <div class="logo">
+        📚 Accounti-Table
+    </div>
+
+    <div>
+
+        <a href="index.html">Dashboard</a>
+        <a href="lessons.html">Lessons</a>
+        <a href="accounts.html">Account Titles</a>
+        <a href="games.html">Games</a>
+        <a href="quiz.html">Quiz</a>
+        <a href="leaderboard.html">Leaderboard</a>
+
+    </div>
+
+</nav>
+
+
+<section class="section">
+
+    <div class="center">
+
+        <span class="badge">
+            INTERACTIVE GAMES
+        </span>
+
+        <h2>
+            🎮 Accounting Games
+        </h2>
+
+        <p>
+            Enter your name and choose a game.
+        </p>
+
+    </div>
+
+
+    <div id="gameNameBox">
+
+        <h3>
+            Enter Player Name
+        </h3>
+
+        <input
+            type="text"
+            id="gamePlayer"
+            placeholder="Enter your name">
+
+        <br>
+
+        <button
+            class="btn primary"
+            onclick="startSelectedGame()">
+
+            Start Game
+
+        </button>
+
+    </div>
+
+
+    <div id="gameMenu">
+
+        <div class="game-card">
+
+            <h3>
+                🧩 Symbol Challenge
+            </h3>
+
+            <p>
+                Identify the account title
+                represented by a symbol.
+            </p>
+
+            <button
+                class="btn primary"
+                onclick="chooseGame('symbol')">
+
+                Choose Game
+
+            </button>
+
+        </div>
+
+
+        <div class="game-card">
+
+            <h3>
+                📂 Classification Challenge
+            </h3>
+
+            <p>
+                Determine whether an account
+                is an Asset, Liability, or
+                Owner's Equity.
+            </p>
+
+            <button
+                class="btn primary"
+                onclick="chooseGame('classification')">
+
+                Choose Game
+
+            </button>
+
+        </div>
+
+
+        <div class="game-card">
+
+            <h3>
+                🧠 Equation Challenge
+            </h3>
+
+            <p>
+                Solve accounting equation
+                problems.
+            </p>
+
+            <button
+                class="btn primary"
+                onclick="chooseGame('equation')">
+
+                Choose Game
+
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <div id="gameArea" class="hidden">
+
+        <p id="gameQuestionNumber"></p>
+
+        <h2 id="gameQuestion"></h2>
+
+        <div
+            id="gameAnswers"
+            class="answers">
+        </div>
+
+        <div
+            id="gameFeedback"
+            class="feedback">
+        </div>
+
+        <button
+            id="gameNext"
+            class="btn primary hidden"
+            onclick="nextGameQuestion()">
+
+            Next →
+
+        </button>
+
+    </div>
+
+
+    <div id="gameResult" class="hidden">
+
+        <h2>
+            🎉 Game Complete!
+        </h2>
+
+        <h3 id="gameFinalScore"></h3>
+
+        <button
+            class="btn primary"
+            onclick="location.reload()">
+
+            Play Again
+
+        </button>
+
+        <a
+            href="leaderboard.html"
+            class="btn">
+
+            View Leaderboard
+
+        </a>
+
+    </div>
+
+</section>
+
+
+<footer>
+
+    <b>Accounti-Table Learning Hub</b>
+
+</footer>
+
+
+<script>
+
+let selectedGame = "";
+
+let gamePlayer = "";
+
+let gameQuestion = 0;
+
+let gameScore = 0;
+
+let gameAnswered = false;
+
+
+const symbolQuestions = [
+
+    {
+        q: "Which account is represented by AR?",
+        a: [
+            "Accounts Receivable",
+            "Accounts Payable",
+            "Asset Revenue",
+            "Accounting Record"
+        ],
+        c: "Accounts Receivable"
+    },
+
+    {
+        q: "Which account is represented by AP?",
+        a: [
+            "Accounts Receivable",
+            "Accounts Payable",
+            "Asset Payable",
+            "Advance Payment"
+        ],
+        c: "Accounts Payable"
+    },
+
+    {
+        q: "Which account is represented by C?",
+        a: [
+            "Cash",
+            "Capital",
+            "Cost",
+            "Credit"
+        ],
+        c: "Capital"
+    },
+
+    {
+        q: "Which account is represented by W?",
+        a: [
+            "Wages",
+            "Withdrawals",
+            "Warehouse",
+            "Work Expense"
+        ],
+        c: "Withdrawals"
+    }
+
+];
+
+
+const classificationQuestions = [
+
+    {
+        q: "Cash on Hand belongs to which classification?",
+        a: [
+            "Asset",
+            "Liability",
+            "Owner's Equity",
+            "Revenue"
+        ],
+        c: "Asset"
+    },
+
+    {
+        q: "Loan Payable belongs to which classification?",
+        a: [
+            "Asset",
+            "Liability",
+            "Owner's Equity",
+            "Revenue"
+        ],
+        c: "Liability"
+    },
+
+    {
+        q: "Capital belongs to which classification?",
+        a: [
+            "Asset",
+            "Liability",
+            "Owner's Equity",
+            "Expense"
+        ],
+        c: "Owner's Equity"
+    },
+
+    {
+        q: "Accounts Receivable belongs to which classification?",
+        a: [
+            "Asset",
+            "Liability",
+            "Owner's Equity",
+            "Expense"
+        ],
+        c: "Asset"
+    }
+
+];
+
+
+const equationQuestions = [
+
+    {
+        q: "Assets = ₱20,000 and Liabilities = ₱8,000. What is Owner's Equity?",
+        a: [
+            "₱12,000",
+            "₱28,000",
+            "₱8,000",
+            "₱20,000"
+        ],
+        c: "₱12,000"
+    },
+
+    {
+        q: "Liabilities = ₱5,000 and Owner's Equity = ₱15,000. What are Assets?",
+        a: [
+            "₱10,000",
+            "₱20,000",
+            "₱15,000",
+            "₱5,000"
+        ],
+        c: "₱20,000"
+    },
+
+    {
+        q: "Assets = ₱30,000 and Owner's Equity = ₱18,000. What are Liabilities?",
+        a: [
+            "₱12,000",
+            "₱48,000",
+            "₱18,000",
+            "₱30,000"
+        ],
+        c: "₱12,000"
+    }
+
+];
+
+
+function chooseGame(type) {
+
+    selectedGame = type;
+
+    document.getElementById(
+        "gameNameBox"
+    ).scrollIntoView({
+        behavior: "smooth"
+    });
+
+}
+
+
+function startSelectedGame() {
+
+    gamePlayer =
+        document
+        .getElementById("gamePlayer")
+        .value
+        .trim();
+
+    if (gamePlayer === "") {
+
+        alert("Please enter your name first.");
+
+        return;
+
+    }
+
+    if (selectedGame === "") {
+
+        alert("Please choose a game first.");
+
+        return;
+
+    }
+
+    gameQuestion = 0;
+
+    gameScore = 0;
+
+    document
+        .getElementById("gameMenu")
+        .classList.add("hidden");
+
+    document
+        .getElementById("gameNameBox")
+        .classList.add("hidden");
+
+    document
+        .getElementById("gameArea")
+        .classList.remove("hidden");
+
+    loadGameQuestion();
+
+}
+
+
+function getGameQuestions() {
+
+    if (selectedGame === "symbol") {
+
+        return symbolQuestions;
+
+    }
+
+    if (selectedGame === "classification") {
+
+        return classificationQuestions;
+
+    }
+
+    return equationQuestions;
+
+}
+
+
+function loadGameQuestion() {
+
+    gameAnswered = false;
+
+    let list = getGameQuestions();
+
+    let q = list[gameQuestion];
+
+
+    document.getElementById(
+        "gameQuestionNumber"
+    ).textContent =
+        "Question " +
+        (gameQuestion + 1) +
+        " of " +
+        list.length;
+
+
+    document.getElementById(
+        "gameQuestion"
+    ).textContent =
+        q.q;
+
+
+    let answerBox =
+        document.getElementById(
+            "gameAnswers"
+        );
+
+    answerBox.innerHTML = "";
+
+
+    q.a.forEach(function(answer) {
+
+        let button =
+            document.createElement("button");
+
+        button.className = "answer";
+
+        button.textContent = answer;
+
+        button.onclick =
+            function() {
+
+                checkGameAnswer(
+                    button,
+                    answer
+                );
+
+            };
+
+        answerBox.appendChild(button);
+
+    });
+
+
+    document.getElementById(
+        "gameFeedback"
+    ).textContent = "";
+
+
+    document.getElementById(
+        "gameNext"
+    ).classList.add("hidden");
+
+}
+
+
+function checkGameAnswer(
+    button,
+    answer
+) {
+
+    if (gameAnswered) {
+        return;
+    }
+
+    gameAnswered = true;
+
+    let list = getGameQuestions();
+
+    let correct =
+        list[gameQuestion].c;
+
+
+    document
+        .querySelectorAll(
+            "#gameAnswers .answer"
+        )
+        .forEach(function(btn) {
+
+            btn.disabled = true;
+
+            if (
+                btn.textContent === correct
+            ) {
+
+                btn.classList.add("correct");
+
+            }
+
+        });
+
+
+    if (answer === correct) {
+
+        gameScore += 100;
+
+        button.classList.add("correct");
+
+        document.getElementById(
+            "gameFeedback"
+        ).textContent =
+            "🎉 Correct! +100 points!";
+
+    }
+
+    else {
+
+        button.classList.add("wrong");
+
+        document.getElementById(
+            "gameFeedback"
+        ).textContent =
+            "❌ Incorrect! Correct answer: "
+            + correct;
+
+    }
+
+
+    document.getElementById(
+        "gameNext"
+    ).classList.remove("hidden");
+
+}
+
+
+function nextGameQuestion() {
+
+    gameQuestion++;
+
+    let list = getGameQuestions();
+
+
+    if (gameQuestion < list.length) {
+
+        loadGameQuestion();
+
+    }
+
+    else {
+
+        finishGame();
+
+    }
+
+}
+
+
+function finishGame() {
+
+    saveScore(
+        "gameScores",
+        gamePlayer,
+        gameScore
+    );
+
+
+    document
+        .getElementById("gameArea")
+        .classList.add("hidden");
+
+
+    document
+        .getElementById("gameResult")
+        .classList.remove("hidden");
+
+
+    document.getElementById(
+        "gameFinalScore"
+    ).textContent =
+        gamePlayer +
+        " scored " +
+        gameScore +
+        " points!";
+
+}
+
+
+function saveScore(
+    storageName,
+    player,
+    score
+) {
+
+    let scores =
+        JSON.parse(
+            localStorage.getItem(storageName)
+            || "[]"
+        );
+
+
+    scores.push({
+
+        name: player,
+
+        score: score,
+
+        date:
+            new Date()
+            .toLocaleDateString()
+
+    });
+
+
+    scores.sort(function(a,b) {
+
+        return b.score - a.score;
+
+    });
+
+
+    localStorage.setItem(
+        storageName,
+        JSON.stringify(
+            scores.slice(0,20)
+        )
+    );
+
+}
+
+</script>
+
+
+</body>
+</html>

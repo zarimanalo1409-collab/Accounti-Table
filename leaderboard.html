@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Leaderboard</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+
+<nav>
+
+    <div class="logo">
+        📚 Accounti-Table
+    </div>
+
+    <div>
+
+        <a href="index.html">Dashboard</a>
+        <a href="lessons.html">Lessons</a>
+        <a href="accounts.html">Account Titles</a>
+        <a href="games.html">Games</a>
+        <a href="quiz.html">Quiz</a>
+        <a href="leaderboard.html">Leaderboard</a>
+
+    </div>
+
+</nav>
+
+
+<section class="section">
+
+    <div class="center">
+
+        <span class="badge">
+            LEADERBOARD
+        </span>
+
+        <h2>
+            🏆 Player Rankings
+        </h2>
+
+        <p>
+            Scores are saved on this browser.
+        </p>
+
+    </div>
+
+
+    <div class="leaderboard">
+
+        <h3>
+            📝 Quiz Rankings
+        </h3>
+
+        <div id="quizBoard">
+        </div>
+
+
+        <hr>
+
+
+        <h3>
+            🎮 Game Rankings
+        </h3>
+
+        <div id="gameBoard">
+        </div>
+
+
+        <br>
+
+
+        <button
+            class="btn"
+            onclick="clearScores()">
+
+            Clear Scores
+
+        </button>
+
+    </div>
+
+</section>
+
+
+<footer>
+
+    <b>Accounti-Table Learning Hub</b>
+
+</footer>
+
+
+<script>
+
+function getScores(name) {
+
+    return JSON.parse(
+        localStorage.getItem(name)
+        || "[]"
+    );
+
+}
+
+
+function showBoard(
+    storageName,
+    elementId
+) {
+
+    let scores =
+        getScores(storageName);
+
+
+    let board =
+        document.getElementById(
+            elementId
+        );
+
+
+    if (scores.length === 0) {
+
+        board.innerHTML =
+            "<p>No scores yet.</p>";
+
+        return;
+
+    }
+
+
+    board.innerHTML = "";
+
+
+    scores.forEach(
+        function(player, index) {
+
+            let row =
+                document.createElement(
+                    "div"
+                );
+
+            row.className =
+                "score-row";
+
+
+            row.innerHTML = `
+
+                <div class="rank">
+                    #${index + 1}
+                </div>
+
+                <div>
+
+                    <b>
+                        ${player.name}
+                    </b>
+
+                    <br>
+
+                    <small>
+                        ${player.date}
+                    </small>
+
+                </div>
+
+                <div class="score">
+                    ${player.score}
+                </div>
+
+            `;
+
+
+            board.appendChild(row);
+
+        }
+    );
+
+}
+
+
+function clearScores() {
+
+    let answer =
+        confirm(
+            "Are you sure you want to clear all scores?"
+        );
+
+
+    if (!answer) {
+        return;
+    }
+
+
+    localStorage.removeItem(
+        "quizScores"
+    );
+
+
+    localStorage.removeItem(
+        "gameScores"
+    );
+
+
+    loadBoards();
+
+}
+
+
+function loadBoards() {
+
+    showBoard(
+        "quizScores",
+        "quizBoard"
+    );
+
+
+    showBoard(
+        "gameScores",
+        "gameBoard"
+    );
+
+}
+
+
+loadBoards();
+
+</script>
+
+
+</body>
+</html>
